@@ -1,6 +1,6 @@
 <div align="center">
 
-# ☕ Java Developer Journey: Zero to Industry-Ready
+# ☕ Java Developer Journey 
 
 **A hands-on monorepo documenting my path from core Java to professional Spring Boot development.**
 
