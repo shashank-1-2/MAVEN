@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dev" class="com.myapp.Dev" autowire="byName">
+        <!-- For Setter Injection -->
+        <!-- <property name="age" value="10675" /> -->
+
+        <!-- For Constructor Injection -->
+        <!-- <constructor-arg index="0" value = "10003" /> -->
+
+        <!-- For Setter Injection --> 
+        <!-- <property name="laptop" ref="laptop" /> -->
+
+        <!-- For Constructor Injection -->
+        <!-- <constructor-arg  ref = "laptop" /> -->
+
+        <!-- Here the ref="laptop" referse to the <bean id="ladptop"... -->
+
+        <!-- For checking the Laptop,Desktop implemets Computer -->
+        <!-- If we want to autowire through the spring then just tell the sprin to do it in <bean> -->
+        <!-- <property name="computer" ref="desktop"/> -->
+
+
+    </bean>
+
+
+    <!-- As we have made laptop id="computer" the above bean will autowire to laptop -->
+    <bean id="computer" class="com.myapp.Laptop" >
+    </bean>
+    <bean id="desktop" class="com.myapp.Desktop">
+    </bean>
+
+    <!-- <bean id="dev" class="com.myapp.Dev" autowire="byType"> -->
+    <!-- Then use primary="true" the one we priotise -->
+    <!-- <bean id="desktop" class="com.myapp.Desktop" primary="true"> -->
+
+</beans>
