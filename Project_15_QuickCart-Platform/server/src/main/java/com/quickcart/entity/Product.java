@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -31,7 +33,20 @@ public class Product {
 
     private String category;
 
-    private String image;
+    private String brand;
+
+    private String color;
+
+    private Double rating;
+
+    private Integer reviewCount;
 
     private Integer stock;
+
+    // Handles multiple gallery images shown below the main preview
+    @ElementCollection
+    @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "image_url")
+    @Builder.Default
+    private List<String> images = new ArrayList<>();
 }
