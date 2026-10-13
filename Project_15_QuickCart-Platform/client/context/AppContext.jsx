@@ -20,8 +20,18 @@ export const AppContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({})
 
     const fetchProductData = async () => {
-        setProducts(productsDummyData)
-    }
+        try {
+            const res = await fetch("http://localhost:8080/api/products");
+            if (res.ok) {
+                const data = await res.json();
+                if (data.length > 0) {
+                    setProducts(data);
+                }
+            }
+        } catch (error) {
+            console.error("Backend fetch error:", error);
+        }
+    };
 
     const fetchUserData = async () => {
         setUserData(userDummyData)
