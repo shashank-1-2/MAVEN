@@ -1,0 +1,6 @@
+2026-10-20 14:59:25,834 - com.example.App - [main] - (TRACE) - This is a trace log message.
+2026-10-20 14:59:25,838 - com.example.App - [main] - (DEBUG) - This is a debug log message.
+2026-10-20 14:59:25,838 - com.example.App - [main] - (INFO ) - This is an info log message.
+2026-10-20 14:59:25,839 - com.example.App - [main] - (WARN ) - This is warn log message.
+2026-10-20 14:59:25,839 - com.example.App - [main] - (ERROR) - This is error log message.
+2026-10-20 14:59:25,839 - com.example.App - [main] - (FATAL) - This is fatal log message.
