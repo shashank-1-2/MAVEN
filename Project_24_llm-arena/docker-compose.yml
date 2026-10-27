@@ -1,0 +1,34 @@
+services:
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/actuator/health || exit 1"]
+      interval: 15s
+      retries: 5
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Optional: run Gemma inside Docker instead of on the host.
+  #   docker compose --profile local-llm up -d
+  #   docker compose exec ollama ollama pull gemma2
+  #   and set OLLAMA_BASE_URL=http://ollama:11434 in .env
+  ollama:
+    image: ollama/ollama
+    profiles: ["local-llm"]
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  ollama:

@@ -1,0 +1,39 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+spring:
+  application:
+    name: SpringAiDemo
+  ai:
+    chat:
+      client:
+        enabled: false   # several ChatModels are on the classpath, so we build one ChatClient per model ourselves
+    openai:
+      api-key: ${OPENAI_API_KEY:missing}
+      chat:
+        options:
+          model: ${OPENAI_MODEL:gpt-4o}
+          temperature: 0.7
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY:missing}
+      chat:
+        options:
+          model: ${ANTHROPIC_MODEL:claude-sonnet-4-5}
+          max-tokens: 1024
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${OLLAMA_MODEL:gemma2}
+
+app:
+  cors:
+    origins: ${CORS_ORIGINS:http://localhost:5173}
+  timeout-seconds: 90
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
